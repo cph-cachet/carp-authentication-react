@@ -1,9 +1,10 @@
 import { AxiosRequestConfig } from "axios";
 import { User } from "oidc-client-ts";
 import { createContext, useContext } from "react";
-import { env } from "../../../utils/env";
+import { env } from "../../utils/env";
 import { AuthProvider } from "react-oidc-context";
-import { oidcConfig } from "../../../authenticator";
+import { oidcConfig } from "../../authenticator";
+import React from "react";
 
 type Props = {
   children: React.ReactNode;

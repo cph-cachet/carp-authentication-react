@@ -20,6 +20,6 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["lib"],
+  "include": ["lib", "src/AuthenticationProvider", "src/types", "src/utils", "src/authenticator.ts", "src/index.tsx"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
