@@ -1,1 +1,1 @@
-export {AuthenticationProvider} from "./components/AuthenticationProvider";
+export * from "./components/AuthenticationProvider";

@@ -55,8 +55,7 @@ export const AuthenticationProvider = ({ children, processEnv }: Props) => {
     return config;
   };
 
-  const getOidcConfig = () => {
-    return {
+  const oidcConfig = {
     authority: `${env.VITE_KEYCLOAK_URL}/realms/${
       env.VITE_KEYCLOAK_REALM
     }`,
@@ -66,7 +65,7 @@ export const AuthenticationProvider = ({ children, processEnv }: Props) => {
     onSigninCallback: (_user: User | void): void => {
       window.history.replaceState({}, document.title, window.location.pathname);
     },
-  };}
+  };
 
   return (
     <AuthenticationContext.Provider
@@ -74,7 +73,7 @@ export const AuthenticationProvider = ({ children, processEnv }: Props) => {
         getUser,
         getConfig,
       }}>
-        <AuthProvider {...getOidcConfig()}>
+        <AuthProvider {...oidcConfig}>
           {children}
         </AuthProvider>
     </AuthenticationContext.Provider>
