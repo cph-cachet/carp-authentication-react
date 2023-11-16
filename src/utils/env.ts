@@ -1,4 +1,5 @@
 import { z } from "zod";
+import 'dotenv/config'
 
 const envSchema = z.object({
   VITE_KEYCLOAK_URL: z.string(),
