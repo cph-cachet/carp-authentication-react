@@ -19,7 +19,7 @@
   "scripts": {
     "version": "npm run build",
     "postversion": "git push && git push --tags",
-    "build": "tsc & vite build & node ./lib/preparelib.js",
+    "build": "tsc && node ./lib/preparelib.js",
     "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
     "lint": "TIMING=1 eslint -c .eslintrc.js --ext .ts src/",
     "clean": "rm -rf lib",

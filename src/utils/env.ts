@@ -7,4 +7,4 @@ const envSchema = z.object({
   VITE_KEYCLOAK_REDIRECT_URI: z.string(),
 });
 
-export const env = envSchema.parse(import.meta.env)
+export const env = envSchema.parse(process.env)
