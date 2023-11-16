@@ -1,13 +1,13 @@
 import { AxiosRequestConfig } from "axios";
-import { User } from "oidc-client-ts";
+import { User, WebStorageStateStore } from "oidc-client-ts";
 import { createContext, useContext } from "react";
-import { env } from "../../utils/env";
+import { loadEnv } from "../../utils/env";
 import { AuthProvider } from "react-oidc-context";
-import { oidcConfig } from "../../authenticator";
 import React from "react";
 
 type Props = {
   children: React.ReactNode;
+  processEnv: NodeJS.ProcessEnv;
 };
 
 interface AuthenticationContextType {
@@ -21,7 +21,8 @@ export const useAuthentication = (): AuthenticationContextType => {
   return useContext(AuthenticationContext);
 };
 
-export const AuthenticationProvider = ({ children }: Props) => {
+export const AuthenticationProvider = ({ children, processEnv }: Props) => {
+  const env = loadEnv(processEnv)
   const getUser = () => {
     const localStorageKey = `oidc.user:${
       env.VITE_KEYCLOAK_URL
@@ -52,6 +53,18 @@ export const AuthenticationProvider = ({ children }: Props) => {
       };
     }
     return config;
+  };
+
+  const oidcConfig = {
+    authority: `${env.VITE_KEYCLOAK_URL}/realms/${
+      env.VITE_KEYCLOAK_REALM
+    }`,
+    client_id: env.VITE_KEYCLOAK_CLIENT_ID,
+    redirect_uri: env.VITE_KEYCLOAK_REDIRECT_URI,
+    userStore: new WebStorageStateStore({ store: window.localStorage }),
+    onSigninCallback: (_user: User | void): void => {
+      window.history.replaceState({}, document.title, window.location.pathname);
+    },
   };
 
   return (

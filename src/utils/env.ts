@@ -1,7 +1,5 @@
 import { z } from "zod";
 
-require('dotenv').config();
-
 const envSchema = z.object({
   VITE_KEYCLOAK_URL: z.string(),
   VITE_KEYCLOAK_REALM: z.string(),
@@ -9,4 +7,4 @@ const envSchema = z.object({
   VITE_KEYCLOAK_REDIRECT_URI: z.string(),
 });
 
-export const env = envSchema.parse(process.env)
+export const loadEnv = (processEnv: NodeJS.ProcessEnv) => envSchema.parse(processEnv);
