@@ -7,7 +7,7 @@ import React from "react";
 
 type Props = {
   children: React.ReactNode;
-  processEnv: NodeJS.ProcessEnv;
+  processEnv: any;
 };
 
 interface AuthenticationContextType {
@@ -55,7 +55,8 @@ export const AuthenticationProvider = ({ children, processEnv }: Props) => {
     return config;
   };
 
-  const oidcConfig = {
+  const getOidcConfig = () => {
+    return {
     authority: `${env.VITE_KEYCLOAK_URL}/realms/${
       env.VITE_KEYCLOAK_REALM
     }`,
@@ -65,7 +66,7 @@ export const AuthenticationProvider = ({ children, processEnv }: Props) => {
     onSigninCallback: (_user: User | void): void => {
       window.history.replaceState({}, document.title, window.location.pathname);
     },
-  };
+  };}
 
   return (
     <AuthenticationContext.Provider
@@ -73,7 +74,7 @@ export const AuthenticationProvider = ({ children, processEnv }: Props) => {
         getUser,
         getConfig,
       }}>
-        <AuthProvider {...oidcConfig}>
+        <AuthProvider {...getOidcConfig()}>
           {children}
         </AuthProvider>
     </AuthenticationContext.Provider>

@@ -7,4 +7,4 @@ const envSchema = z.object({
   VITE_KEYCLOAK_REDIRECT_URI: z.string(),
 });
 
-export const loadEnv = (processEnv: NodeJS.ProcessEnv) => envSchema.parse(processEnv);
+export const loadEnv = (processEnv: any) => envSchema.parse(processEnv);
