@@ -1,9 +1,8 @@
 import { AxiosRequestConfig } from "axios";
 import { User, WebStorageStateStore } from "oidc-client-ts";
-import { createContext, useContext } from "react";
-import { OidcProcessEnvs, loadEnv } from "../../utils/env";
+import React, { createContext, useContext } from "react";
 import { AuthProvider } from "react-oidc-context";
-import React from "react";
+import { OidcProcessEnvs, loadEnv } from "../../utils/env";
 
 type Props = {
   children: React.ReactNode;
