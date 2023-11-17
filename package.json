@@ -27,7 +27,7 @@
     "publish-patch": "npm version patch && npm publish ./lib",
     "publish-minor": "npm version minor && npm publish ./lib",
     "publish-major": "npm version major && npm publish ./lib",
-    "publish-dev": "npm version prerelease --preid=dev && npm publish ./lib --tag dev",
+    "publish-dev": "npm version prerelease --preid=dev && npm publish ./lib --tag dev && npm run postpublish",
     "postpublish": "npm run clean"
   },
   "dependencies": {
