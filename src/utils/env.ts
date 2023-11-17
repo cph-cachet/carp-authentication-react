@@ -1,6 +1,11 @@
 import { z } from "zod";
 
-require('dotenv').config()
+export interface OidcProcessEnvs {
+  readonly VITE_KEYCLOAK_URL: string;
+  readonly VITE_KEYCLOAK_REALM: string;
+  readonly VITE_KEYCLOAK_CLIENT_ID: string;
+  readonly VITE_KEYCLOAK_REDIRECT_URI: string;
+}
 
 const envSchema = z.object({
   VITE_KEYCLOAK_URL: z.string(),
@@ -9,5 +14,4 @@ const envSchema = z.object({
   VITE_KEYCLOAK_REDIRECT_URI: z.string(),
 });
 
-// export const loadEnv = (processEnv: any) => envSchema.parse(processEnv);
-export const env = envSchema.parse(process.env)
+export const loadEnv = (processEnv: OidcProcessEnvs) => envSchema.parse(processEnv);
