@@ -9,7 +9,7 @@ The project uses [oidc-client-ts](https://github.com/authts/oidc-client-ts) and 
 Source code is found under [src](src), components are found in [components/](src/components/) and each component should have it's own folder. Utility functions should reside inside [utils/](src/utils/) folder.
 
 ## Publishing
-In order to publish the client as an npm package in Github packages, follow the following steps:
+In order to library the client as an npm package in Github packages, follow the following steps:
 - Install the node modules if they don't exist, using `npm i`
 - Build the package using `npm run build`
 - Publish the package using either `npm run publish-patch`, `npm run publish-minor` or `npm run publish-major` (depending the scope of the change) ONLY FOR PRODUCTION builds and `npm run publish-dev` for test builds.
