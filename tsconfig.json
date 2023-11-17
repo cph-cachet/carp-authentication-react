@@ -1,15 +1,22 @@
 {
   "compilerOptions": {
-    "target": "es6",
-    "module": "commonjs",
+    "target": "ESNext",
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "module": "ESNext",
+    "skipLibCheck": true,
+
+    /* Bundler mode */
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "react",
+    
     "declaration": true,
     "outDir": "./lib",
     "strict": true,
-    "resolveJsonModule": true,
     "rootDir": "./src",
-    "jsx": "react-jsx",
-    "esModuleInterop": true
+    "esModuleInterop": true,
   },
   "include": ["./.eslintrc.js", "types.d.ts", "src/**/*"],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules", "src/preparelib.cjs"]
 }

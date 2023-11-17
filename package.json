@@ -16,10 +16,11 @@
     "Dániel Jakab <> <https://github.com/jakdan99>"
   ],
   "license": "MIT",
+  "type": "module",
   "scripts": {
     "version": "npm run build",
     "postversion": "git push && git push --tags",
-    "build": "tsc && node ./lib/preparelib.js",
+    "build": "tsc && node src/preparelib.cjs",
     "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
     "lint": "TIMING=1 eslint -c .eslintrc.js --ext .ts src/",
     "clean": "rm -rf lib",
