@@ -1,7 +1,7 @@
 import { AxiosRequestConfig } from "axios";
 import { User, WebStorageStateStore } from "oidc-client-ts";
 import { createContext, useContext } from "react";
-import { loadEnv } from "../../utils/env";
+import { env } from "../../utils/env";
 import { AuthProvider } from "react-oidc-context";
 import React from "react";
 
@@ -22,7 +22,7 @@ export const useAuthentication = (): AuthenticationContextType => {
 };
 
 export const AuthenticationProvider = ({ children, processEnv }: Props) => {
-  const env = loadEnv(processEnv)
+  // const env = loadEnv(processEnv)
   const getUser = () => {
     const localStorageKey = `oidc.user:${
       env.VITE_KEYCLOAK_URL
