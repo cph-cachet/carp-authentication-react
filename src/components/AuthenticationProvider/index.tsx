@@ -1,7 +1,7 @@
 import { AxiosRequestConfig } from "axios";
 import { User, WebStorageStateStore } from "oidc-client-ts";
-import React from "react";
-import { AuthProvider } from "react-oidc-context";
+import React, { useEffect, useState } from "react";
+import { AuthProvider, hasAuthParams, useAuth } from "react-oidc-context";
 import { OidcProcessEnvs, loadEnv } from "../../utils/env";
 
 type Props = {
@@ -43,6 +43,26 @@ export const getConfig = () => {
   return config;
 };
 
+const AutoSignIn = ({ children } : { children: React.ReactNode}) => {
+  const auth = useAuth();
+  const [hasTriedSignin, setHasTriedSignin] = useState(false);
+
+  useEffect(() => {
+    if (
+      !hasAuthParams() &&
+      !auth.isAuthenticated &&
+      !auth.activeNavigator &&
+      !auth.isLoading &&
+      !hasTriedSignin
+    ) {
+      auth.signinRedirect();
+      setHasTriedSignin(true);
+    }
+  }, [auth, hasTriedSignin]);
+
+  return <>{children}</>;
+};
+
 export const AuthenticationProvider = ({ children, processEnv }: Props) => {
   env = loadEnv(processEnv)
 
@@ -60,7 +80,9 @@ export const AuthenticationProvider = ({ children, processEnv }: Props) => {
 
   return (
     <AuthProvider {...oidcConfig}>
-      {children}
+      <AutoSignIn>
+        {children}
+      </AutoSignIn>
     </AuthProvider>
   );
 };
