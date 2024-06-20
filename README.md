@@ -4,13 +4,13 @@ A wrapper for [oidc-client-ts](https://github.com/authts/oidc-client-ts) and [re
 
 ## Installation
 ```sh
-bun i @carp-dk/carp-authentication-react
+bun i @carp-dk/authentication-react
 ```
 
-## Useage
+## Usage
 ```tsx
 // src/index.tsx
-import { AuthenticationProvider } from '@cph-cachet/carp.authentication';
+import { AuthenticationProvider } from '@carp-dk/authentication-react';
 import App from './pages/App';
 
 const container = document.getElementById('root');

@@ -4,7 +4,7 @@
     "type": "git",
     "url": "https://github.com/cph-cachet/carp-authentication-react.git"
   },
-  "version": "1.0.0",
+  "version": "1.0.1",
   "keywords": [
     "CARP",
     "authentication",
