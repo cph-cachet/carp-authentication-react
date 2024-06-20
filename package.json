@@ -1,5 +1,5 @@
 {
-  "name": "@carp/carp-authentication-react",
+  "name": "@carp-dk/carp-authentication-react",
   "repository": {
     "type": "git",
     "url": "https://github.com/cph-cachet/carp-authentication-react.git"
@@ -7,8 +7,8 @@
   "version": "1.0.0",
   "keywords": [
     "CARP",
-    "AUTHENTICATION",
-    "REACT"
+    "authentication",
+    "react"
   ],
   "author": "Copenhagen Research Platform (CARP) https://carp.dk",
   "contributors": [
@@ -20,7 +20,7 @@
   "scripts": {
     "version": "npm run build",
     "postversion": "git push && git push --tags",
-    "build": "tsc && node src/preparelib.cjs",
+    "build": "tsc && rsync -av --progress README.md ./lib && rsync -av --progress package.json ./lib",
     "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
     "lint": "TIMING=1 eslint -c .eslintrc.js --ext .ts src/",
     "clean": "rm -rf lib",
@@ -32,12 +32,11 @@
   },
   "peerDependencies": {
     "axios": "^1.6.2",
-    "dotenv": "^16.3.1",
     "oidc-client-ts": "^2.4.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-oidc-context": "^2.3.1",
-    "zod": "^3.22.4",
+    "react": ">=16.8.0",
+    "react-oidc-context": "^2.3.1"
+  },
+  "devDependencies": {
     "@types/node": "^20.9.0",
     "@types/react": "^18.2.15",
     "@types/react-dom": "^18.2.7",

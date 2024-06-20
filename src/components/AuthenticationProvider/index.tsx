@@ -1,21 +1,18 @@
 import { AxiosRequestConfig } from "axios";
 import { User, WebStorageStateStore } from "oidc-client-ts";
 import React, { useEffect, useState } from "react";
-import { AuthProvider, hasAuthParams, useAuth } from "react-oidc-context";
-import { OidcProcessEnvs, loadEnv } from "../../utils/env";
+import { AuthProvider, AuthProviderProps, hasAuthParams, useAuth } from "react-oidc-context";
 
 type Props = {
   children: React.ReactNode;
-  processEnv: OidcProcessEnvs;
+  config: AuthProviderProps;
 };
 
-let env: OidcProcessEnvs;
+let authConfig: AuthProviderProps;
 
 export const getUser = () => {
-  const localStorageKey = `oidc.user:${
-    env.VITE_KEYCLOAK_URL
-  }/realms/${env.VITE_KEYCLOAK_REALM}:${
-    env.VITE_KEYCLOAK_CLIENT_ID
+  const localStorageKey = `oidc.user:${authConfig.authority}:${
+    authConfig.client_id
   }`;
   const oidcStorage = localStorage.getItem(localStorageKey);
 
@@ -63,21 +60,16 @@ const AutoSignIn = ({ children } : { children: React.ReactNode}) => {
   return <>{children}</>;
 };
 
-export const AuthenticationProvider = ({ children, processEnv }: Props) => {
-  env = loadEnv(processEnv)
-
+export const AuthenticationProvider = ({ children, config }: Props) => {
+  authConfig = config;
   const oidcConfig = {
-    authority: `${env.VITE_KEYCLOAK_URL}/realms/${
-      env.VITE_KEYCLOAK_REALM
-    }`,
-    client_id: env.VITE_KEYCLOAK_CLIENT_ID,
-    redirect_uri: env.VITE_KEYCLOAK_REDIRECT_URI,
-    userStore: new WebStorageStateStore({ store: window.localStorage }),
-    onSigninCallback: (_user: User | void): void => {
+    ...config,
+    userStore: config.userStore ?? new WebStorageStateStore({ store: window.localStorage }),
+    onSigninCallback: config.onSigninCallback ?? ((_user: User | void): void => {
       window.history.replaceState({}, document.title, window.location.pathname);
-    },
+    }),
   };
-
+  
   return (
     <AuthProvider {...oidcConfig}>
       <AutoSignIn>

@@ -17,6 +17,6 @@
     "rootDir": "./src",
     "esModuleInterop": true,
   },
-  "include": ["./.eslintrc.js", "types.d.ts", "src/**/*"],
-  "exclude": ["node_modules", "src/preparelib.cjs"]
+  "include": ["./.eslintrc.js", "src/**/*"],
+  "exclude": ["node_modules",]
 }
