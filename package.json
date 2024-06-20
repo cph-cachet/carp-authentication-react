@@ -1,19 +1,19 @@
 {
-  "name": "@cph-cachet/carp.authentication",
+  "name": "@carp/carp-authentication-react",
   "repository": {
     "type": "git",
-    "url": "https://github.com/cph-cachet/carp-auth-react.git"
+    "url": "https://github.com/cph-cachet/carp-authentication-react.git"
   },
   "version": "1.0.0",
   "keywords": [
     "CARP",
-    "CACHET",
-    "CAT",
-    "AUTHENTICATION"
+    "AUTHENTICATION",
+    "REACT"
   ],
-  "author": "Copenhagen Center for Health Technology (CACHET) https://carp.cachet.dk",
+  "author": "Copenhagen Research Platform (CARP) https://carp.dk",
   "contributors": [
-    "Dániel Jakab <> <https://github.com/jakdan99>"
+    "Dániel Jakab <> <https://github.com/jakdan99>",
+    "Aamir Farooq <> <http://github.com/slimshadyiam>"
   ],
   "license": "MIT",
   "type": "module",
@@ -30,16 +30,14 @@
     "publish-dev": "npm version prerelease --preid=dev && npm publish ./lib --tag dev && npm run postpublish",
     "postpublish": "npm run clean"
   },
-  "dependencies": {
+  "peerDependencies": {
     "axios": "^1.6.2",
     "dotenv": "^16.3.1",
     "oidc-client-ts": "^2.4.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-oidc-context": "^2.3.1",
-    "zod": "^3.22.4"
-  },
-  "devDependencies": {
+    "zod": "^3.22.4",
     "@types/node": "^20.9.0",
     "@types/react": "^18.2.15",
     "@types/react-dom": "^18.2.7",
@@ -51,8 +49,5 @@
     "eslint-plugin-react-refresh": "^0.4.3",
     "typescript": "^5.0.2",
     "vite": "^4.4.5"
-  },
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
   }
 }
